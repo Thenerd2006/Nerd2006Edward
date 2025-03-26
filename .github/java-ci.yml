@@ -1,0 +1,28 @@
+
+name: Run Java Program
+
+on:
+  push:
+    branches:
+      - main  # Change this if your branch is named master
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Runs on an Ubuntu server
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Clones your repo
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # Use OpenJDK (Temurin)
+          java-version: '17'  # Use Java 17 (change if needed)
+
+      - name: Compile Java Program
+        run: javac Calculator.java
+
+      - name: Run Java Program
+        run: java Calculator
